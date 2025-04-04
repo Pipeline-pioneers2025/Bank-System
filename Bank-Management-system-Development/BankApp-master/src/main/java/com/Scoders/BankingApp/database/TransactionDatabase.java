@@ -92,4 +92,18 @@ public class TransactionDatabase {
                 String dateTime = rs.getString("dateTime");
                 String transactionType = rs.getString("transactionType");
 
+                transaction transact = new transaction();
+                transact.setTransId(id);
+                transact.setAccount(account);
+                transact.setTransactionType(transactionType);
+                transact.setAmount(amount);
+                transact.setDateTime(LocalDateTime.parse(dateTime));
+                transactions.add(transact);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving transactions: " + e.getMessage());
+        }
+
+        return transactions;
+    }
 
