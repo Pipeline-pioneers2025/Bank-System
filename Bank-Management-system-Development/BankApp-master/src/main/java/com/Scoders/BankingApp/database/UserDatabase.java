@@ -71,7 +71,10 @@ public class UserDatabase {
         String selectSQL = "SELECT * FROM User WHERE username = ?";
         User user = null;
 
-
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
 
 
 
