@@ -23,4 +23,12 @@ public class TransactionDatabase {
                 + "transactionType TEXT, "
                 + "FOREIGN KEY(accNo) REFERENCES Account(accNo))";
 
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(createTableSQL);
+            System.out.println("Transaction table created or already exists.");
+        } catch (SQLException e) {
+            System.out.println("Error creating table: " + e.getMessage());
+        }
+    }
 
