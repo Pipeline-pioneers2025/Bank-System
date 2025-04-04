@@ -38,3 +38,7 @@ public class UserDatabase {
             System.out.println("Error inserting user: " + e.getMessage());
         }
     }
+
+    public static User getUserById(Long id) {
+        String selectSQL = "SELECT * FROM User WHERE id = ?";
+        User user = null;
