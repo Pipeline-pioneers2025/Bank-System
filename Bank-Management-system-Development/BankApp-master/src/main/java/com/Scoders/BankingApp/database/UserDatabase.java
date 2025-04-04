@@ -47,3 +47,13 @@ public class UserDatabase {
              PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
             pstmt.setLong(1, id);
             ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                Long userId = rs.getLong("id");
+                String username = rs.getString("username");
+                String surname = rs.getString("surname");
+                String password = rs.getString("password");
+
+
+
+
