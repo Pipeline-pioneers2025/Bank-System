@@ -42,3 +42,8 @@ public class UserDatabase {
     public static User getUserById(Long id) {
         String selectSQL = "SELECT * FROM User WHERE id = ?";
         User user = null;
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+            pstmt.setLong(1, id);
+            ResultSet rs = pstmt.executeQuery();
