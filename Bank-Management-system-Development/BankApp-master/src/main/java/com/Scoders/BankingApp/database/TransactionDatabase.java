@@ -122,3 +122,19 @@ public class TransactionDatabase {
         }
     }
 
+
+    public static void deleteTransaction(Long transId) {
+        String deleteSQL = "DELETE FROM Transactions WHERE transId = ?";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(deleteSQL)) {
+            pstmt.setLong(1, transId);
+            pstmt.executeUpdate();
+            System.out.println("Transaction deleted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error deleting transaction: " + e.getMessage());
+        }
+    }
+
+}
+
