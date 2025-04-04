@@ -41,3 +41,12 @@ public class AccountDatabasedummy {
             System.out.println("Error inserting account: " + e.getMessage());
         }
     }
+
+    public static Account getAccountByAccNo(Long accNo) {
+        String selectSQL = "SELECT * FROM Account WHERE accNo = ?";
+        Account account = null;
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+            pstmt.setLong(1, accNo);
+            ResultSet rs = pstmt.executeQuery();
