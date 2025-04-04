@@ -65,4 +65,12 @@ public class AccountDatabasedummy {
                 User user = getUserById(userId); // Call the method to get User by ID
                 account.setUser(user); // Set the full User object
 
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving account: " + e.getMessage());
+        }
+
+        return account;
+    }
+
 
