@@ -74,3 +74,18 @@ public class AccountDatabasedummy {
     }
 
 
+    // Method to update the balance of an account
+    public static void updateBalance(Long accNo, Double newBalance) {
+        String updateSQL = "UPDATE Account SET balance = ? WHERE accNo = ?";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+            pstmt.setDouble(1, newBalance);
+            pstmt.setLong(2, accNo);
+            pstmt.executeUpdate();
+            System.out.println("Account balance updated successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error updating balance: " + e.getMessage());
+        }
+    }
+
