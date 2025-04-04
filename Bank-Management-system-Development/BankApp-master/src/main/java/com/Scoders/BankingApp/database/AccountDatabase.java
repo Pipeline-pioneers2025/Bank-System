@@ -88,3 +88,7 @@ public class AccountDatabase {
 
         return account;
     }
+    public static List<Account> getAccountByUserId(User user) {
+        String selectSQL = "SELECT * FROM Account WHERE user_id = ?";
+        List<Account> account = new ArrayList<>();
+
