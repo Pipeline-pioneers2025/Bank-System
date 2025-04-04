@@ -32,3 +32,19 @@ public class TransactionDatabase {
         }
     }
 
+    public static void insertTransaction(Long accNo, Double amount, String transactionType) {
+        String insertSQL = "INSERT INTO Transactions (amount, dateTime, accNo, transactionType) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+            pstmt.setDouble(1, amount);
+            pstmt.setString(2, LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)); // current timestamp
+            pstmt.setLong(3, accNo);
+            pstmt.setString(4, transactionType);
+            pstmt.executeUpdate();
+            System.out.println("Transaction inserted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error inserting transaction: " + e.getMessage());
+        }
+    }
+
