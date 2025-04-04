@@ -110,4 +110,18 @@ public class UserDatabase {
         }
     }
 
+    public static void deleteUser(Long id) {
+        String deleteSQL = "DELETE FROM User WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(deleteSQL)) {
+            pstmt.setLong(1, id);
+            pstmt.executeUpdate();
+            System.out.println("User deleted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error deleting user: " + e.getMessage());
+        }
+    }
+
+}
 
