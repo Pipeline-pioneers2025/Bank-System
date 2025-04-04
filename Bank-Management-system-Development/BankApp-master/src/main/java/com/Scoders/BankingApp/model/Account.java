@@ -17,3 +17,12 @@ public class    Account {
     private User user;
 
     private Double balance;
+
+    public Account() {
+    }
+
+    public Account(Long accNo, User user, Double balance) {
+        this.accNo = accNo;
+        this.user = user;
+        this.balance = balance;
+    }
