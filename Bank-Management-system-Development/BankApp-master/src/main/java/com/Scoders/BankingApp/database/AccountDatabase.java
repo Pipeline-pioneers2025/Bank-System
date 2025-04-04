@@ -37,3 +37,17 @@ public class AccountDatabase {
 
         try (Connection conn = DriverManager.getConnection(DATABASE_URL);
              PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+
+
+            String accNo = generateAccountNumber();
+
+            pstmt.setString(1, accNo);
+            pstmt.setLong(2, userId);
+            pstmt.setDouble(3, balance);
+            pstmt.executeUpdate();
+
+            System.out.println("Account inserted successfully with accNo: " + accNo);
+        } catch (SQLException e) {
+            System.out.println("Error inserting account: " + e.getMessage());
+        }
+    }
