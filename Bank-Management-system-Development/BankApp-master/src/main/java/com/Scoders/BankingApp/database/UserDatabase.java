@@ -15,3 +15,12 @@ public class UserDatabase {
                 + "surname TEXT, "
                 + "password TEXT)";
 
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(createTableSQL);
+            System.out.println("User table created or already exists.");
+        } catch (SQLException e) {
+            System.out.println("Error creating table: " + e.getMessage());
+        }
+    }
+
