@@ -62,4 +62,13 @@ public class AccountDatabase {
         String selectSQL = "SELECT * FROM Account WHERE accNo = ?";
         Account account = null;
 
-        //pipeline
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+            pstmt.setLong(1, accNo);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                Long id = rs.getLong("accNo");
+                Long userId = rs.getLong("user_id");
+                Double balance = rs.getDouble("balance");
