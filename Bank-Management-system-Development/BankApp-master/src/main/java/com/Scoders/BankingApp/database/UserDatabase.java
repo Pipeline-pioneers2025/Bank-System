@@ -60,5 +60,12 @@ public class UserDatabase {
                 user.setSurname(surname);
                 user.setPassword(password);
             }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving user: " + e.getMessage());
+        }
+
+        return user;
+    }
+
 
 
