@@ -24,3 +24,5 @@ public class UserDatabase {
         }
     }
 
+    public static void insertUser(String username, String surname, String password) {
+        String insertSQL = "INSERT INTO User (username, surname, password) VALUES (?, ?, ?)";
