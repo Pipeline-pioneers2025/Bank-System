@@ -64,4 +64,20 @@ public class TransactionDatabase {
                 Long accNo = rs.getLong("accNo");
                 String transactionType = rs.getString("transactionType");
 
+                transaction = new transaction();
+                transaction.setTransId(id);
+                transaction.setAmount(amount);
+                transaction.setDateTime(LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_DATE_TIME));
+                transaction.setAccount(new Account()); // Assuming Account constructor takes accNo
+                transaction.setTransactionType(transactionType);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving transaction: " + e.getMessage());
+        }
+
+        return transaction;
+    }
+
+
+
 
