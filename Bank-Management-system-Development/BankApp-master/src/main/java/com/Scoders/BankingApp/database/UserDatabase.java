@@ -91,4 +91,23 @@ public class UserDatabase {
             System.out.println("Error retrieving user: " + e.getMessage());
         }
 
+        return user;
+    }
+
+    public static void updateUser(Long id, String username, String surname, String password) {
+        String updateSQL = "UPDATE User SET username = ?, surname = ?, password = ? WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, surname);
+            pstmt.setString(3, password);
+            pstmt.setLong(4, id);
+            pstmt.executeUpdate();
+            System.out.println("User updated successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error updating user: " + e.getMessage());
+        }
+    }
+
 
