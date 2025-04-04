@@ -26,3 +26,15 @@ public class UserDatabase {
 
     public static void insertUser(String username, String surname, String password) {
         String insertSQL = "INSERT INTO User (username, surname, password) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, surname);
+            pstmt.setString(3, password);
+            pstmt.executeUpdate();
+            System.out.println("User inserted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error inserting user: " + e.getMessage());
+        }
+    }
