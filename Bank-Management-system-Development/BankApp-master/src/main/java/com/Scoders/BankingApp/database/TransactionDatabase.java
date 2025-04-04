@@ -48,3 +48,13 @@ public class TransactionDatabase {
         }
     }
 
+    public static transaction getTransactionByTransId(Long transId) {
+        String selectSQL = "SELECT * FROM Transactions WHERE transId = ?";
+        transaction transaction = null;
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+            pstmt.setLong(1, transId);
+            ResultSet rs = pstmt.executeQuery();
+
+
