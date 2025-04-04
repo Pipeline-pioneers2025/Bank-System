@@ -27,3 +27,17 @@ public class AccountDatabasedummy {
             System.out.println("Error creating table: " + e.getMessage());
         }
     }
+
+    public static void insertAccount(Long userId, Double balance) {
+        String insertSQL = "INSERT INTO Account (user_id, balance) VALUES (?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+            pstmt.setLong(1, userId);
+            pstmt.setDouble(2, balance);
+            pstmt.executeUpdate();
+            System.out.println("Account inserted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error inserting account: " + e.getMessage());
+        }
+    }
