@@ -32,3 +32,8 @@ public class AccountDatabase {
     }
 
 
+    public static void insertAccount(Long userId, Double balance) {
+        String insertSQL = "INSERT INTO Account (accNo, user_id, balance) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
