@@ -107,3 +107,18 @@ public class TransactionDatabase {
         return transactions;
     }
 
+    public static void updateTransaction(Long transId, Double newAmount, String newTransactionType) {
+        String updateSQL = "UPDATE Transactions SET amount = ?, transactionType = ? WHERE transId = ?";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+            pstmt.setDouble(1, newAmount);
+            pstmt.setString(2, newTransactionType);
+            pstmt.setLong(3, transId);
+            pstmt.executeUpdate();
+            System.out.println("Transaction updated successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error updating transaction: " + e.getMessage());
+        }
+    }
+
