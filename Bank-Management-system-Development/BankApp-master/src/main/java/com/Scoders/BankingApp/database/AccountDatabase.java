@@ -72,3 +72,19 @@ public class AccountDatabase {
                 Long id = rs.getLong("accNo");
                 Long userId = rs.getLong("user_id");
                 Double balance = rs.getDouble("balance");
+
+                account = new Account();
+                account.setAccNo(id);
+                account.setBalance(balance);
+
+                // Now fetch the user from the database based on userId
+                User user = getUserById(userId); // Call the method to get User by ID
+                account.setUser(user); // Set the full User object
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving account: " + e.getMessage());
+        }
+
+        return account;
+    }
