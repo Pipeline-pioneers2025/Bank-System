@@ -18,3 +18,12 @@ public class AccountDatabasedummy {
                 + "user_id INTEGER, "
                 + "balance DOUBLE, "
                 + "FOREIGN KEY(user_id) REFERENCES User(id))";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(createTableSQL);
+            System.out.println("Account table created or already exists.");
+        } catch (SQLException e) {
+            System.out.println("Error creating table: " + e.getMessage());
+        }
+    }
