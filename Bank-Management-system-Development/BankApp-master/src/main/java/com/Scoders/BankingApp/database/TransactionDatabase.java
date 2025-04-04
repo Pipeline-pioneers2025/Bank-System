@@ -86,6 +86,10 @@ public class TransactionDatabase {
             pstmt.setLong(1, account.getAccNo());
             ResultSet rs = pstmt.executeQuery();
 
-
+            while (rs.next()) {
+                Long id = rs.getLong("transId");
+                Double amount = rs.getDouble("amount");
+                String dateTime = rs.getString("dateTime");
+                String transactionType = rs.getString("transactionType");
 
 
