@@ -78,6 +78,14 @@ public class TransactionDatabase {
         return transaction;
     }
 
+    public static List<transaction> getTransactionsByAccount(Account account) {
+        String selectSQL = "SELECT * FROM Transactions WHERE accNo = ?";
+        List<transaction> transactions = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+            pstmt.setLong(1, account.getAccNo());
+            ResultSet rs = pstmt.executeQuery();
+
 
 
 
