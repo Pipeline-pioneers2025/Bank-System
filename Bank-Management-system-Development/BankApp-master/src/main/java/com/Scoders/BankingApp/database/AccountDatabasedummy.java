@@ -89,3 +89,19 @@ public class AccountDatabasedummy {
         }
     }
 
+
+    public static void deleteAccount(Long accNo) {
+        String deleteSQL = "DELETE FROM Account WHERE accNo = ?";
+
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(deleteSQL)) {
+            pstmt.setLong(1, accNo);
+            pstmt.executeUpdate();
+            System.out.println("Account deleted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error deleting account: " + e.getMessage());
+        }
+    }
+
+}
+
