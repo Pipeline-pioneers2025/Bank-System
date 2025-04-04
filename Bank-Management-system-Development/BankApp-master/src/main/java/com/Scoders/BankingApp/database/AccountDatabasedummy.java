@@ -50,3 +50,19 @@ public class AccountDatabasedummy {
              PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
             pstmt.setLong(1, accNo);
             ResultSet rs = pstmt.executeQuery();
+
+
+            if (rs.next()) {
+                Long id = rs.getLong("accNo");
+                Long userId = rs.getLong("user_id");
+                Double balance = rs.getDouble("balance");
+
+                account = new Account();
+                account.setAccNo(id);
+                account.setBalance(balance);
+
+                // Now fetch the user from the database based on userId
+                User user = getUserById(userId); // Call the method to get User by ID
+                account.setUser(user); // Set the full User object
+
+
