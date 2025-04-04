@@ -67,5 +67,12 @@ public class UserDatabase {
         return user;
     }
 
+    public static User getUserByUsername(String username) {
+        String selectSQL = "SELECT * FROM User WHERE username = ?";
+        User user = null;
+
+
+
+
 
 
