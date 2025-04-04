@@ -51,3 +51,13 @@ public class AccountDatabase {
             System.out.println("Error inserting account: " + e.getMessage());
         }
     }
+
+
+    private static String generateAccountNumber() {
+        return String.format("%08d", new Random().nextInt(100000000));
+    }
+
+    // Method to get an account by account number
+    public static Account getAccountByAccNo(Long accNo) {
+        String selectSQL = "SELECT * FROM Account WHERE accNo = ?";
+        Account account = null;
