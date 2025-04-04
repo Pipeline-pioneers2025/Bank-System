@@ -92,3 +92,22 @@ public class AccountDatabase {
         String selectSQL = "SELECT * FROM Account WHERE user_id = ?";
         List<Account> account = new ArrayList<>();
 
+        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+            pstmt.setLong(1, user.getId());
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Long AccNo = rs.getLong("accNo");
+                Double balance = rs.getDouble("balance");
+
+                account.add(new Account(AccNo,user,balance));
+
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving account: " + e.getMessage());
+        }
+
+        return account;
+    }
