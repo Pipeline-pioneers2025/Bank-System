@@ -1,7 +1,7 @@
 # Bank-System
 A simple Bank Management System built to manage customer banking operations such as account creation, deposit, withdrawal, balance check, and transaction history. 
 
-🚀 ## Features Functionalities
+##  🚀 Features Functionalities
 User Account Management
 
 Create new bank accounts
@@ -12,3 +12,18 @@ Edit customer details
 
 Delete accounts
 
+# Transactions
+
+Deposit money
+
+Withdraw money
+
+Transfer funds between accounts
+
+View transaction history
+
+Authentication
+
+User login/logout functionality
+
+Admin and customer roles with different permissions
