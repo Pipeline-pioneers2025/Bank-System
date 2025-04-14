@@ -22,8 +22,22 @@ Transfer funds between accounts
 
 View transaction history
 
-Authentication
+## Authentication
 
 User login/logout functionality
 
 Admin and customer roles with different permissions
+
+## Dashboard
+
+Admin panel for managing users and viewing overall statistics
+
+User dashboard for personal account activities
+
+## Reports
+
+Daily, weekly, and monthly financial reports (Admin only)
+
+Printable account statements
+
+
