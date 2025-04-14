@@ -54,7 +54,7 @@ Node.js with Express or Python with Flask/Django or PHP
 
 RESTful API for data handling
 
-🗄️ Database:
+## 🗄️ Database:
 MySQL 
 
 
